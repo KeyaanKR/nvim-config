@@ -9,6 +9,9 @@ return {
           return capabilities
         end)(),
         settings = {
+          python = {
+            pythonPath = "/usr/bin/python3",
+          },
           basedpyright = {
             analysis = {
               useLibraryCodeForTypes = true,
