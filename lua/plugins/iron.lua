@@ -1,22 +1,41 @@
 return {
-  "b0o/incline.nvim",
-  event = "BufReadPre",
-  priority = 1200,
+  "Vigemus/iron.nvim",
   config = function()
-    require("incline").setup({
-      window = { margin = { vertical = 0, horizontal = 1 } },
-      hide = {
-        cursorline = true,
+    local view = require("iron.view")
+    local iron = require("iron.core")
+    iron.setup({
+      config = {
+        scratch_repl = true,
+        repl_open_cmd = view.split.vertical.botright(0.5),
+        repl_definition = {
+          python = { command = "ipython", "--no-autoindent" },
+        },
       },
-      render = function(props)
-        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        if vim.bo[props.buf].modified then
-          filename = "[+] " .. filename
-        end
-
-        local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-        return { { icon, guifg = color }, { " " }, { filename } }
-      end,
+      keymaps = {
+        send_motion = "<space>sc",
+        visual_send = "<space>sc",
+        send_file = "<space>sf",
+        send_line = "<space>sl",
+        send_until_cursor = "<space>su",
+        send_mark = "<space>sm",
+        mark_motion = "<space>mc",
+        mark_visual = "<space>mc",
+        remove_mark = "<space>md",
+        cr = "<space>s<cr>",
+        interrupt = "<space>s<space>",
+        exit = "<space>sq",
+        clear = "<space>cl",
+      },
+      highlight = {
+        italic = true,
+      },
+      ignore_blank_lines = true,
     })
   end,
+  keys = {
+    { "<space>rs", "<cmd>IronRepl<cr>" },
+    { "<space>rr", "<cmd>IronRestart<cr>" },
+    { "<space>rf", "<cmd>IronFocus<cr>" },
+    { "<space>rh", "<cmd>IronHide<cr>" },
+  },
 }
