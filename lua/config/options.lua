@@ -12,3 +12,6 @@ vim.g.lazyvim_python_ruff = "ruff"
 -- Use the treesitter foldexpr for folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- Use system clipboard
+vim.opt.clipboard = "unnamedplus"
