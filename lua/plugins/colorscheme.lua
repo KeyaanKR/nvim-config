@@ -4,10 +4,13 @@ return {
     },
     {
         "EdenEast/nightfox.nvim",
+    },
+    {
+        "rose-pine/neovim",
         lazy = false, -- Ensures it's loaded immediately
         priority = 1000, -- Ensures it loads before other plugins
         config = function()
-            vim.cmd("colorscheme nordfox")
+            vim.cmd("colorscheme rose-pine")
         end,
     },
 }

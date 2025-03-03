@@ -42,3 +42,16 @@ keymap.set("n", "<C-w><down>", "C-w>-")
 keymap.set("n", "<C-j>", function()
     vim.diagnostic.goto_next()
 end, opts)
+
+-- Command-line mode mappings for search navigation
+keymap.set("c", "<Tab>", function()
+    local cmd_type = vim.fn.getcmdtype()
+    local mappings = { ["/"] = "<C-G>", ["?"] = "<C-T>" }
+    return mappings[cmd_type] or "<C-Z>"
+end, { expr = true, noremap = true })
+
+keymap.set("c", "<S-Tab>", function()
+    local cmd_type = vim.fn.getcmdtype()
+    local mappings = { ["/"] = "<C-T>", ["?"] = "<C-G>" }
+    return mappings[cmd_type] or "<C-Z>"
+end, { expr = true, noremap = true })
