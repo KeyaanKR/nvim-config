@@ -1,9 +1,14 @@
 return {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-        -- Remove unwanted components like "gj"
+        opts.sections.lualine_c = {
+            {
+                "filename",
+                path = 1, -- Shows relative path (directory > filename)
+                symbols = { modified = "", readonly = "", unnamed = "" }, -- Remove extra symbols
+            },
+        }
         opts.sections.lualine_x = {
-            "filetype",
             "diff",
         }
         table.insert(
