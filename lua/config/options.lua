@@ -21,3 +21,5 @@ vim.g.clipboard = {
     paste = { ["+"] = "wl-paste", ["*"] = "wl-paste" },
     cache_enabled = 0,
 }
+
+require("config.filetype")
